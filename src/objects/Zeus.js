@@ -4,7 +4,8 @@ class Zeus extends Phaser.Sprite {
 		super(game, x, y, key, frame);
 		game.world.add(this);
 
-		this.hp = game.add.sprite(game.world.width/2 - 128,0,'hp');
+		this.hpback = game.add.sprite(game.world.width/2 - 128, 0, 'hpback');
+		this.hp = game.add.sprite(game.world.width/2 - 128, 0, 'hp');
 		this.hp.cropEnabled = true;
 		this.hp.maxwidth = 256;
 
@@ -46,8 +47,11 @@ class Zeus extends Phaser.Sprite {
 	}
 
 	update() {
-		if (this.dead)
+		if (this.dead) {
+			this.angle += 5;
+			this.body.velocity.x = 100;
 			return;
+		}
 
 		if (this.player && this.game.time.now > this.reactTimer) {
 			this.follow(this.player);
@@ -88,8 +92,13 @@ class Zeus extends Phaser.Sprite {
 		this.hp.destroy();
 		this.crosshair.destroy();
 		let g = this.game;
-		g.time.events.add(2000, function() { g.state.start('GameWon'); }, this);
-		this.kill();
+		g.time.events.add(3000, function() { g.state.start('GameWon'); }, this);
+		// this.kill();
+		this.body.collideWorldBounds = false;
+		this.body.velocity.x = this.game.rnd.integerInRange(-300,300);
+		this.body.velocity.y = this.game.rnd.integerInRange(-400,-200);
+		this.body.allowGravity = true;
+		this.body.gravity.y = 300;
 	}
 
 	aim(object) {

@@ -4,13 +4,6 @@ import Zeus from 'objects/Zeus';
 class GameState extends Phaser.State {
 
 	preload() {
-		this.game.load.spritesheet("player", "assets/player.png", 32, 48);
-		this.game.load.spritesheet("zeus", "assets/zeus.png", 64, 64);
-		this.game.load.spritesheet("human", "assets/human.png", 32, 32);
-		this.game.load.spritesheet("bull", "assets/bull.png", 48, 32);
-		this.game.load.spritesheet("back1", "assets/back1.png", 320, 240);
-		this.game.load.spritesheet("crosshair", "assets/crosshair.png", 64, 64);
-		this.game.load.spritesheet("hp", "assets/hp.png", 256, 8);
 
 	}
 
